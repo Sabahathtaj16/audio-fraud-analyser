@@ -1,0 +1,24 @@
+# 🚀 Streamlit for UI
+import streamlit as st
+
+# 🛠 Backend: SQL Database & Authentication
+import sqlite3
+import bcrypt
+
+# 🎧 Audio Processing
+from pydub import AudioSegment # For audio cropping
+from pydub.exceptions import CouldntDecodeError
+
+# 💎 Email Notifications
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+# ✅ Other Utilities
+import os
+import io
+import time
+import base64
+
+# 🔥 Google Gemini AI
+import google.generativeai as genai
