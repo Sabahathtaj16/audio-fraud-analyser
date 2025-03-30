@@ -1,0 +1,59 @@
+## Code Setup & Execution Guide
+
+This guide explains how to set up the necessary environment and run the FraudShield AI application from the `myfraud.py` script.
+
+**Prerequisites:**
+
+*   **Python:** Ensure you have Python 3.8 or newer installed. You can check by running `python --version` or `python3 --version` in your terminal.
+*   **Pip:** Python's package installer should be available with your Python installation.
+*   **Google Cloud Account:** You need an active account with the Gemini API enabled. Obtain an API Key.
+*   **Gmail Account:** Requires a Gmail account with 2-Step Verification enabled. You must generate a 16-character **App Password** specifically for this application within your Google Account settings (under Security -> 2-Step Verification -> App passwords). *Do not use your regular Gmail password.*
+
+**Step 1: Get the Code**
+
+*   Download or clone the `myfraud.py` file to your local machine.
+
+**Step 2: Install Dependencies**
+
+*   Open your terminal or command prompt.
+*   Navigate to the directory where you saved `myfraud.py`.
+*   Install the required Python libraries:
+    ```bash
+    pip install streamlit bcrypt google-generativeai numpy soundfile
+    ```
+    *(**Tip:** For better project management, consider creating a virtual environment first: `python -m venv venv`, activate it (`source venv/bin/activate` on Linux/macOS or `.\venv\Scripts\activate` on Windows), and then run the `pip install` command.)*
+
+**Step 3: Configure Credentials (CRITICAL SECURITY WARNING!)**
+
+⚠️ **SECURITY RISK:** This project requires placing sensitive credentials directly into the Python code (`myfraud.py`). This is **highly insecure** for shared or production environments. Proceed only if you understand and accept the risk for local testing. For deployment, use secure methods like Streamlit Secrets or Environment Variables.
+
+*   Open `myfraud.py` with a text editor.
+*   Find the **Configuration section** (usually near the top, around lines 30-40, look for comments like `# 2. API Keys, Email Credentials...`).
+*   **Replace the placeholder values** with your actual information:
+    *   `GEMINI_API_KEY = "AIzaSy..."` **<-- Your Google Gemini API Key**
+    *   `SENDER_EMAIL = "madihakhan83100@gmail.com"` **<-- Your sender Gmail address**
+    *   `SENDER_APP_PASSWORD = "fhsz fows nvaz fwwy"` **<-- Your 16-character Gmail App Password**
+    *   `RECEIVER_EMAIL = "fraud83100@gmail.com"` **<-- The email address to receive reports**
+*   **Save** the changes to `myfraud.py`.
+
+**Step 4: Run the Application**
+
+1.  Make sure you are still in the directory containing `myfraud.py` in your terminal.
+2.  Execute the Streamlit command:
+    ```bash
+    streamlit run myfraud.py
+    ```
+3.  Streamlit will start the web server and usually open the application automatically in your default web browser. It will also display local and network URLs in the terminal (typically `http://localhost:8501`).
+4.  Access the application through the provided URL.
+
+**Step 5: Using the Application**
+
+1.  Use the "Register" tab to create a new user account.
+2.  Use the "Login" tab to sign in.
+3.  Once logged in, use the "Choose an audio file" button to upload a WAV, MP3, or M4A call recording.
+4.  Click "Analyze Call 🕵️‍♀️" and wait for the results.
+5.  Review the "Classification" and "Reason" provided by the AI.
+6.  If the classification is "Spam" or "Fraud", a red "🚨 Report..." button will appear. Click it if you wish to send the analysis details to the configured `RECEIVER_EMAIL`.
+7.  Click "Logout 👋" when finished.
+
+*(The SQLite database file `calls_analyzer.db` will be automatically created in the same directory as `myfraud.py` when the application runs for the first time or performs database operations.)*
